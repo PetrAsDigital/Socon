@@ -1,0 +1,13 @@
+div.maingrid table, div.maingrid th, div.maingrid td {
+    border: 1px solid grey;
+    border-collapse: collapse;
+    padding: 5px;
+}
+         
+div.maingrid table tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+div.maingrid table tr:nth-child(even) {
+    background-color: #ffffff;
+}
