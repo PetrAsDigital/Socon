@@ -1,7 +1,7 @@
 import React from 'react';
 import _style from './css/style.css';
 var FakeData = require('./FakeData.json');
-
+var global = require('./global.js');
 
 class App extends React.Component {
     constructor() {
@@ -11,14 +11,19 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        //this.setState({ data: FakeData.data }); 
-
-        fetch('http://localhost:8081/get')
-        .then(response => {
-            return response.json();
-        }).then(body => {
-            this.setState({ data: body.data })
-        });
+        if (global.env == 'local')
+        {
+            this.setState({ data: FakeData.data }); 
+        }
+        else
+        {
+            fetch(global.settings.data_service.url)
+            .then(response => {
+                return response.json();
+            }).then(body => {
+                this.setState({ data: body.data })
+            });
+        }        
     };
 
     render() {
